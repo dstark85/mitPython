@@ -26,5 +26,4 @@ def long_alpha(s):
     return s[saved_index: saved_index + longest]
 
 
-
-# an extra comment for git purposes.
+# deleted the git commit line from github
