@@ -17,10 +17,9 @@ def bisect(cube, epsilon):
             break
         if guess_cubed > cube:  # initial guess was too large
             high = guess # reduces to upper bound to the previous guess
-            guess = (guess + low) / 2
         else:
             low = guess  # increases the lower bound 
-            guess = (guess + high) / 2
+        guess = (low + high) / 2
         guess_cubed = guess ** 3 
        
     print("There were %d number of guesses" %number_of_guesses) 
