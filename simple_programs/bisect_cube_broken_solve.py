@@ -12,16 +12,16 @@ def bisect(cube, epsilon):
     high = cube
     while abs(cube - guess_cubed) > epsilon:
         number_of_guesses += 1
-        if number_of_guesses > 10:
+        if number_of_guesses > 20:  # This computer has a bit of an attitude problem
             print("I am tired of this calculation")
             break
         if guess_cubed > cube:  # initial guess was too large
             high = guess # reduces to upper bound to the previous guess
             guess = (guess + low) / 2
         else:
-            guess = (guess + cube) / 2   # this is Faulty!!!
+            low = guess  # increases the lower bound 
+            guess = (guess + high) / 2
         guess_cubed = guess ** 3 
-        print(guess)
        
     print("There were %d number of guesses" %number_of_guesses) 
 
@@ -29,10 +29,11 @@ def bisect(cube, epsilon):
         print(guess, "is a good approximation to", cube)
     else:
         print("No good approximation to", cube)
+    print()
     return 
 
 def test():
-    bisect(27, 0.1)
-    bisect(90, 1)
+    bisect(27, 0.001)
+    bisect(90, 0.001)
 
 test()
