@@ -24,3 +24,6 @@ def long_alpha(s):
     if count > longest:
         return s[new_index:]
     return s[saved_index: saved_index + longest]
+
+
+# deleted the git commit line from github
