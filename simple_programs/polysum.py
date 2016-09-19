@@ -26,7 +26,8 @@ def polysum(n, s):
         '''  
         return n * s
 
-    return round(area(n, s) + (perimeter(n, s)) ** 2, 4)
+    ans = area(n, s) + perimeter(n, s) ** 2
+    return round(ans, 4)
 
 
 # test cases are irrevelant after proof-reading the question
