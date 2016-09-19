@@ -16,6 +16,7 @@ def polysum(n, s):
         '''
         denominator = tan(pi / n)
         numerator = (0.25 * n * s ** 2) 
+        print("Area is", numerator / denominator)
         return numerator / denominator
 
     def perimeter(n, s):
@@ -25,6 +26,21 @@ def polysum(n, s):
         '''  
         return n * s
 
-    return round(area(n, s) + perimeter(n, s), 4)
+    return round(area(n, s) + (perimeter(n, s)) ** 2, 4)
 
+
+# test cases are irrevelant after proof-reading the question
+'''
+print("Triangle with side length 10")
+print("Perimeter = 30")
+print("Area = 10 * 5 sqroot 3")
+print(10 * 5 * sqrt(3))
+print('-------')
 print(polysum(3, 10))
+
+print("Square with side 10")
+print("Perimeter = 40")
+print("Area = 100")
+print(polysum(4, 10))
+'''
+print(polysum(4, 74))
