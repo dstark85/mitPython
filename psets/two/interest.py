@@ -7,7 +7,6 @@ def compound(charge, min_payment, apr):
     apr is a float also representing a percentage (0.1 = 10%)
     Calculates the new balance for each month
     return the balance after one year of minimum payments.
-       Can consider how long the debt would take to get rid of.
     '''
     def calc_interest(amount, apr):
         '''
@@ -24,11 +23,9 @@ def compound(charge, min_payment, apr):
         total_paid += payment
         unpaid_balance = new_balance - payment
         interest = calc_interest(unpaid_balance, apr)
-        print(i, new_balance, payment, unpaid_balance, interest) 
+#        print(i, new_balance, payment, unpaid_balance, interest) 
         new_balance = unpaid_balance + interest
 
-    return total_paid 
+    return round(new_balance, 2)
 
 
-total = compound(5000, .02, .18)
-print("total amount paid is", total)
