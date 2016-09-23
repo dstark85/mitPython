@@ -1,0 +1,9 @@
+hangman
+pumpkin
+notebook
+challenge
+anonymous
+
+oops
+
+ exclude,me
