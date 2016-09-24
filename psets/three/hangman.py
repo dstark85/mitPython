@@ -110,7 +110,7 @@ def hangman():
         return False
         
     lives = 9
-    word_list = get_word_list('words.txt')
+    word_list = get_word_list('my_words.txt')
     not_guessed_letters = list('abcdefghijklmnopqrstuvwxyz')
     word = choose_word(word_list) 
     letter_dict = make_dict(word)
