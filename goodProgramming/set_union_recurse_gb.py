@@ -1,5 +1,4 @@
 # This is another interesting recursive solution
-
 def union(set1, set2):
     '''
     set1 and set2 are collections of objects, each of which might be 
@@ -18,7 +17,7 @@ def union(set1, set2):
     else:
         return set1[0] + union(set1[1:], set2)
 
-
+print('-' * 10)
 # Here's how:
 
 # case1: length of set 1 is in fact 0
@@ -35,4 +34,3 @@ print('-' * 10)
 print('a')
 print('ab')
 print('acbd')
-  
