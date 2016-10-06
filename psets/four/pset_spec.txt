@@ -1,0 +1,15 @@
+Two versions of a wordgame will be made.
+This game resembles scrabble
+Players will be dealt letters and then construct words.
+Each successfully created word will return a score. 
+Players are dealt n letters (assume 7 for now)
+The player arranges the hand into as many words as they can.
+ Each letter can only be used once, however.
+Scoring:
+  word score is sum of letter points multiplied by word length.
+  Scrabble letter scoring is used: A = 1, B = 3 ...
+  Each letter is mapped in SCRABBLE_LETTER_VALUES lowercase
+Be Sure to validate that the hand actually contains the letters 
+  that the user supplied via the word. Perhaps a try-exception
++50pt bonus for using all letters
+
