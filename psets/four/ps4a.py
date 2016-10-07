@@ -71,8 +71,17 @@ def getWordScore(word, n):
     n: integer (HAND_SIZE; i.e., hand size required for additional points)
     returns: int >= 0
     """
-    # TO DO ... <-- Remove this comment when you code this function
+    word_len = len(word)
+    points = 0  # point counter
+    for letter in word:  # loop over each letter 
+        points += SCRABBLE_LETTER_VALUES[letter]
 
+    points *= word_len # multiplier for word length
+    
+    if word_len == n:  # give bonus points if all dealt letters used
+        points += 50
+
+    return points
 
 
 #
@@ -111,15 +120,18 @@ def dealHand(n):
     returns: dictionary (string -> int)
     """
     hand={}
-    numVowels = n // 3
+    numVowels = n // 3 # DEREKEDIT This does not guarantee that n/3
+                       # will be vowels
+    numVowels = n // 3 + 1 # DEREKEDIT This guarantees that n/3
     
     for i in range(numVowels):
-        x = VOWELS[random.randrange(0,len(VOWELS))]
-        hand[x] = hand.get(x, 0) + 1
+        x = VOWELS[random.randrange(0,len(VOWELS))] # use choice ?
+        # x = random.choice(VOWELS)
+        hand[x] = hand.get(x, 0) + 1 # populates the dict
         
     for i in range(numVowels, n):    
         x = CONSONANTS[random.randrange(0,len(CONSONANTS))]
-        hand[x] = hand.get(x, 0) + 1
+        hand[x] = hand.get(x, 0) + 1 # populates the dict 
         
     return hand
 
@@ -142,9 +154,12 @@ def updateHand(hand, word):
     hand: dictionary (string -> int)    
     returns: dictionary (string -> int)
     """
-    # TO DO ... <-- Remove this comment when you code this function
+    hand_copy = hand.copy()  # can mutate this dictionary
 
+    for letter in word:
+        hand_copy[letter] -= 1  # decrement each letter
 
+    return hand_copy
 
 #
 # Problem #3: Test word validity
@@ -160,8 +175,23 @@ def isValidWord(word, hand, wordList):
     hand: dictionary (string -> int)
     wordList: list of lowercase strings
     """
-    # TO DO ... <-- Remove this comment when you code this function
+    # Can use bisection search to find word in wordList. 
+    
+    # is each letter in word in hand? 
+    letter_freq = getFrequencyDict(word) 
 
+    for letter in word:
+        try:
+            if letter_freq[letter] > hand[letter]: 
+                return False
+        except KeyError:
+            return False
+
+    # slow check:
+    if word not in wordList:
+        return False
+
+    return True
 
 #
 # Problem #4: Playing a hand
@@ -174,7 +204,7 @@ def calculateHandlen(hand):
     hand: dictionary (string-> int)
     returns: integer
     """
-    # TO DO... <-- Remove this comment when you code this function
+    return sum(hand.values())    
 
 
 
