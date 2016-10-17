@@ -82,9 +82,23 @@ class Hand(object):
         word: string
         returns: Boolean (if the word was or was not made)
         """
-        # Your code here
-
-    
+        handCopy = self.hand.copy()
+        for letter in word:
+            try:
+                handLetter = handCopy[letter]
+            except KeyError:  # the letter key is not present
+                return False
+            if handLetter == 0: # the hand is out of that letter
+                return False
+            handCopy[letter] -= 1
+        # loop passed so word is valid. HandCopy contains letters left
+        # reset self.hand manually. don't bother with copy        
+        for key in handCopy:
+            if handCopy[key] == 0: # delete corresponding key in self.h
+                del self.hand[key]
+            self.hand[key] = handCopy[key]
+        return True
+        
 myHand = Hand(7)
 print(myHand)
 print(myHand.calculateLen())
