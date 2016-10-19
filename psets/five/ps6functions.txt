@@ -1,0 +1,18 @@
+    def __init__(self, text):
+    def get_message_text(self):
+    def get_valid_words(self):
+    def build_shift_dict(self, shift):
+    def apply_shift(self, shift):
+    def __init__(self, text, shift):
+    def get_shift(self):
+    def get_encrypting_dict(self):
+    def get_message_text_encrypted(self):
+    def change_shift(self, shift):
+    def __init__(self, text):
+    def decrypt_message(self):
+class Message(object):
+class PlaintextMessage(Message):
+class CiphertextMessage(Message):
+def load_words(file_name):
+def is_word(word_list, word):
+def get_story_string():
