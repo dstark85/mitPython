@@ -134,7 +134,7 @@ class Message(object):
                 # put the character since it's not a letter
                 encryptedMsg += letter
 
-        self.message_text = encryptedMsg
+        return encryptedMsg
 
 class PlaintextMessage(Message):
     def __init__(self, text, shift):
@@ -229,6 +229,7 @@ class CiphertextMessage(Message):
         and the decrypted message text using that shift value
         '''
         max_words = 0 # set the max of valid words to 0
+        best_shift_value = None
         plaintext = None
         # only set one object of the plaintext class
         possiblePlaintext = PlaintextMessage(self.get_message_text(), 0)
@@ -236,23 +237,18 @@ class CiphertextMessage(Message):
         for s in range(1, 26):  # iterate through each possible key
             valid_word_count = 0 # reset valid words to 0 every iteration
             # shift the cipher 
-            possiblePlaintext.change_shift(-s)
+            possiblePlaintext.change_shift(s) # need not be negative
             for word in possiblePlaintext.get_message_text_encrypted().split():
                 if is_word(self.get_valid_words(), word):
                     valid_word_count += 1
             if valid_word_count > max_words:
                 max_words = valid_word_count
                 plaintext = possiblePlaintext.get_message_text_encrypted()
-        return max_words, plaintext        
+                best_shift_value =  s 
+        if max_words == 0: # found no words
+            return (0, "Couldn't decrypt")
+        return best_shift_value, plaintext        
 
-'''
-            for word in self.getmessage_text.split(): # remove spaces
-                if is_word(self.get_valid_words(), word):
-                    valid_word_count += 1 # count the word
-            if valid_word_count > ans[0]: 
-                max_words = valid_word_count # saves the number of words
-                plaintext = 
-  '''          
 
 #Example test case (PlaintextMessage)
 plaintext = PlaintextMessage('hello', 2)
@@ -264,15 +260,28 @@ ciphertext = CiphertextMessage('jgnnq')
 print('Expected Output:', (24, 'hello'))
 print('Actual Output:', ciphertext.decrypt_message())
 
+'''
 myTest = Message('vote for ME plz!')
 print(myTest.build_shift_dict(3))
 myTest.apply_shift(3)
 print(myTest.get_message_text())
+'''
 
-rot13 = 13
-secretMsg = PlaintextMessage('I am coding a piece of software that does a basic Caesar cipher. Pretty neat, huh?', rot13)
 
-realTest = CiphertextMessage(secretMsg.get_message_text_encrypted())
-# decryptedKey, decryptedMsg = realTest.decrypt_message()
-print(decryptedKey, decryptedMsg)
+def testRot():
+    rot13 = 13
+    secretMsg = PlaintextMessage('I am coding a piece of software that does a basic Caesar cipher. Pretty neat, huh?', rot13)
+
+    realTest = CiphertextMessage(secretMsg.get_message_text_encrypted())
+    decryptedKey, decryptedMsg = realTest.decrypt_message()
+    print(decryptedKey, decryptedMsg)
+
+def testMe(text, shift):
+    shift = shift % 26
+    p = PlaintextMessage(text, shift)
+    
+    cipherText = CiphertextMessage(p.get_message_text_encrypted())
+    decryptedKey, decryptedMsg = cipherText.decrypt_message()
+    print("Is your message\n\" " + decryptedMsg + " \"\n")
+    print("I used" , decryptedKey, "to find it.")
 
