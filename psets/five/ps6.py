@@ -234,7 +234,7 @@ class CiphertextMessage(Message):
         # only set one object of the plaintext class
         possiblePlaintext = PlaintextMessage(self.get_message_text(), 0)
  
-        for s in range(1, 26):  # iterate through each possible key
+        for s in range(0, 26):  # iterate through each possible key
             valid_word_count = 0 # reset valid words to 0 every iteration
             # shift the cipher 
             possiblePlaintext.change_shift(s) # need not be negative
@@ -260,6 +260,10 @@ ciphertext = CiphertextMessage('jgnnq')
 print('Expected Output:', (24, 'hello'))
 print('Actual Output:', ciphertext.decrypt_message())
 
+print("Decrypt the story..")
+story = CiphertextMessage(get_story_string())
+print(story.decrypt_message())
+
 '''
 myTest = Message('vote for ME plz!')
 print(myTest.build_shift_dict(3))
@@ -267,6 +271,8 @@ myTest.apply_shift(3)
 print(myTest.get_message_text())
 '''
 
+mitTest = CiphertextMessage('nonsense words colon paper two')
+print(mitTest.decrypt_message())
 
 def testRot():
     rot13 = 13
